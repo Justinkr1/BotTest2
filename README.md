@@ -1,2 +1,5 @@
-# BotTest2
-New repo after progress report 1
+# Bot-Testing
+ Testing First Bot
+ 
+ run terminal
+install npm i dotenv
