@@ -82,7 +82,12 @@ client.on('message', message => {
     }
     })
 
+    //testing create category command
+    if (command === 'create-category') {
+        message.guild.channels.create({ name: "Name", type: 'ChannelType.GuildCategory' });
+    }
 
+     
 
 }))
 
