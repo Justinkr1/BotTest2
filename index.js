@@ -26,9 +26,9 @@ client.on("messageCreate", (message => {
     const messageArray = message.content.split(" ");
     const argument = messageArray.slice(1);
     const cmd = messageArray[0];
-
+    const guild = message.guild;
     //COMMANDS
-
+    
 // test command
 
 if (command === 'test') {
@@ -38,7 +38,7 @@ if (command === 'test') {
 // testing create channel
 if (command === 'create-channel') {
     const channelName = message.content.split(" ").slice(1).join(" ");
-    const guild = message.guild;
+    //const guild = message.guild;
 
     if (!channelName) {
       return message.channel.send("Please provide the course number and channel # (ex. CSC_325_G1).");
@@ -69,9 +69,7 @@ client.on('message', message => {
         options.forEach((option, i) => {
             pollEmbed.addField(`Option ${i + 1}`, option);
             });
-        /*options.forEach((option, i) => {
-        pollEmbed.addField(Option ${i + 1}, options);
-        });*/
+
     message.channel.send(pollEmbed)
         .then(pollMessage => {
             options.forEach((option, i) => {
@@ -82,12 +80,22 @@ client.on('message', message => {
     }
     })
 
-    //testing create category command
-    if (command === 'create-category') {
-        message.guild.channels.create({ name: "Name", type: 'ChannelType.GuildCategory' });
-    }
+    
+    if (command === 'text-channel') (message) => {
+        const name = message.content.replace('!text-channel ', '')
+        message.reply('create channel command works');
+        message.guild.channels.create(name, {
+            type: 'text',
+        })
+            .then((channel) => {
+                message.reply('.then works.');
+                console.log(channel)
+                //const categoryId ='1062143661325955123'
+                //channel.setParent(categoryId)
+            })
 
-     
+
+    }
 
 }))
 
