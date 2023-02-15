@@ -26,7 +26,7 @@ client.on("messageCreate", (message => {
     const messageArray = message.content.split(" ");
     const argument = messageArray.slice(1);
     const cmd = messageArray[0];
-
+    const guild = message.guild;
     //COMMANDS
 
 // test command
@@ -36,7 +36,7 @@ if (command === 'test') {
 }
 
 // testing create channel
-if (command === 'create-channel') {
+/*if (command === 'create-channel') {
     const channelName = message.content.split(" ").slice(1).join(" ");
     const guild = message.guild;
 
@@ -44,10 +44,27 @@ if (command === 'create-channel') {
       return message.channel.send("Please provide the course number and channel # (ex. CSC_325_G1).");
     }
     guild.channels
-    .create(channelName, { type: "text" })
+    .create(channelName, { type: 'GUILD_TEXT' })
     .then(channel => message.channel.send(Created ,{channelName} ,channel))
     .catch(console.error);
 
+}
+*/
+if (command === 'createtextchannel') {
+    const channelName = message.content.split(" ").slice(1).join(" ");
+    //const name = message.content.replace('!createtextchannel ', '')
+    message.channel.send('create channel command works');
+    guild.channels
+    .create({name: channelName, 
+        type: 0,
+        //parent: cat[0].ID,
+    })
+    .then((channel) => {
+        message.channel.send('.then works.');
+        console.log(channel)
+        const categoryId ='1062143661325955123'
+        channel.setParent(categoryId)
+    })
 }
 //testing poll command
 client.on('message', message => {
@@ -69,9 +86,7 @@ client.on('message', message => {
         options.forEach((option, i) => {
             pollEmbed.addField(`Option ${i + 1}`, option);
             });
-        /*options.forEach((option, i) => {
-        pollEmbed.addField(Option ${i + 1}, options);
-        });*/
+
     message.channel.send(pollEmbed)
         .then(pollMessage => {
             options.forEach((option, i) => {
@@ -80,17 +95,11 @@ client.on('message', message => {
         })
         .catch(console.error);
     }
-    })
+    
+})
 
-    //testing create category command
-    if (command === 'create-category') {
-        message.guild.channels.create({ name: "Name", type: 'ChannelType.GuildCategory' });
-    }
 
-     
-
-}))
-
+    }))
 
 
 
