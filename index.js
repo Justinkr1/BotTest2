@@ -67,11 +67,6 @@ if (command === 'createtextchannel') {
     })
 }
 //test poll command
-const {Client, GatewayIntentBits, EmbedBuilder, PermissionsBitFields, Permissions }=require (`discord.js`);
-const Discord = require(`discord.js`);
-
-const prefix = '!';
-
 const client2 = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
   
