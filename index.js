@@ -1,5 +1,4 @@
 require("dotenv").config()
-//createroles = require('./createRole.js')
 const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions } = require(`discord.js`);
 
 const prefix = '!';
@@ -32,15 +31,15 @@ client.on("messageCreate", (message => {
 
 // test command
 
-if (command === 'test')(message)=> {
+if (command === 'createRole')(message)=> {
     message.channel.send("If you are in class CSC-325 React with :one:!");
     createRole(message);
 }
 function createRole(message) {
     const guild = message.guild;
-    const role = guild.roles.cache.find(role => role.name === "student");
+    const role = guild.roles.cache.has(role => role.name === "student");
   
-    if (message.content === '!test' && message.reactions.cache.has('1️⃣')) {
+    if (message.content === '!createRole' && message.reactions.cache.has('1️⃣')) {
       const member = message.member;
       member.roles.add(role);
       message.channel.send('You have been assigned the "student" role!');
@@ -65,15 +64,12 @@ function createRole(message) {
 */
 if (command === 'createtextchannel') {
     const channelName = message.content.split(" ").slice(1).join(" ");
-    //const name = message.content.replace('!createtextchannel ', '')
-    message.channel.send('create channel command works');
     guild.channels
     .create({name: channelName, 
         type: 0,
         //parent: cat[0].ID,
     })
     .then((channel) => {
-        message.channel.send('.then works.');
         console.log(channel)
         const categoryId ='1062143661325955123'
         channel.setParent(categoryId)
