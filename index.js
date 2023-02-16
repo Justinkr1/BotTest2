@@ -1,4 +1,5 @@
 require("dotenv").config()
+//createroles = require('./createRole.js')
 const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions } = require(`discord.js`);
 
 const prefix = '!';
@@ -31,9 +32,21 @@ client.on("messageCreate", (message => {
 
 // test command
 
-if (command === 'test') {
+if (command === 'test')(message)=> {
     message.channel.send("If you are in class CSC-325 React with :one:!");
+    createRole(message);
 }
+function createRole(message) {
+    const guild = message.guild;
+    const role = guild.roles.cache.find(role => role.name === "student");
+  
+    if (message.content === '!test' && message.reactions.cache.has('1️⃣')) {
+      const member = message.member;
+      member.roles.add(role);
+      message.channel.send('You have been assigned the "student" role!');
+    }
+  }
+
 
 // testing create channel
 /*if (command === 'create-channel') {
