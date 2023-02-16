@@ -129,5 +129,5 @@ const client2 = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBi
 
 
 
-client.login();
+client.login(process.env.BOT_TOKEN);
 client2.login(process.env.BOT_TOKEN);
